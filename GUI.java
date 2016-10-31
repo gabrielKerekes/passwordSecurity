@@ -1,4 +1,4 @@
-package passwordsecurity2;
+package src.zadanie3;
 
 import java.awt.Dimension;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import javax.swing.JEditorPane;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
-import passwordsecurity2.Database.MyResult;
+import src.zadanie3.Database.MyResult;
 
 
 public class GUI extends javax.swing.JFrame {
@@ -20,7 +20,7 @@ public class GUI extends javax.swing.JFrame {
         initComponents();
         jEditorPane1.setEditable(false);
         jEditorPane1.setContentType("text/html;charset=UTF-8");
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/uvod.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/uvod.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -219,7 +219,7 @@ public class GUI extends javax.swing.JFrame {
 
     private void loadUvod(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadUvod
         
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/uvod.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/uvod.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -232,7 +232,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadUvod
 
     private void loadUlohy(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadUlohy
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/ulohy.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/ulohy.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -245,7 +245,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadUlohy
 
     private void loadSalt(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadSalt
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/salt.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/salt.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -258,7 +258,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadSalt
 
     private void loadDelay(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadDelay
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/delay.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/delay.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -271,7 +271,7 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadDelay
 
     private void loadHash(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_loadHash
-        java.net.URL helpURL = PasswordSecurity2.class.getResource("help/hash.html");
+        java.net.URL helpURL = PasswordSecurity2.class.getResource("../../help/hash.html");
         if (helpURL != null) {
             try {
                 jEditorPane1.setPage(helpURL);
@@ -284,8 +284,10 @@ public class GUI extends javax.swing.JFrame {
     }//GEN-LAST:event_loadHash
 
     private void LogIn(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_LogIn
-   
+
         try {
+            Thread.sleep(2500);
+
                 if (jTextField1.getText().equals("")){
                     JOptionPane.showMessageDialog(rootPane, "Nevyplnene meno.");
                     jTextField1.setText(null);

@@ -5,31 +5,33 @@
 //         potrebnych upravach.                                         //
 // Uloha3: Vlozte do prihlasovania nejaku formu oneskorenia.            //
 //////////////////////////////////////////////////////////////////////////
-package passwordsecurity2;
+package src.zadanie3;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
-import passwordsecurity2.Database.MyResult;
+import src.zadanie3.Database.MyResult;
 
-public class Login {
-    protected static MyResult prihlasovanie(String meno, String heslo) throws IOException, Exception{
-        /*
-        *   Delay je vhodne vytvorit este pred kontolou prihlasovacieho mena.
-        */
+public class Login
+{
+    protected static MyResult prihlasovanie(String meno, String heslo) throws IOException, Exception
+    {
         MyResult account = Database.find("hesla.txt", meno);
-        if (!account.getFirst()){
+        if (!account.getFirst())
+        {
             return new MyResult(false, "Nespravne meno.");
         }
-        else {
+        else
+        {
             StringTokenizer st = new StringTokenizer(account.getSecond(), ":");
             st.nextToken();      //prvy token je prihlasovacie meno
-            /*
-            *   Pred porovanim hesiel je nutne k heslu zadanemu od uzivatela pridat prislusny salt z databazy a nasledne tento retazec zahashovat.
-            */
-            boolean rightPassword = st.nextToken().equals(heslo);
+
+            String hash = st.nextToken();
+            String salt = st.nextToken();
+            boolean rightPassword = Security.verifyPassword(heslo, salt, hash);
             if (!rightPassword)    
                 return new MyResult(false, "Nespravne heslo.");
         }
+
         return new MyResult(true, "Uspesne prihlasenie.");
     }
 }

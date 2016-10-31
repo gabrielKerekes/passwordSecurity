@@ -1,28 +1,31 @@
-//////////////////////////////////////////////////////////////////////////
-// TODO:                                                                //
-// Uloha1: Do suboru s heslami ulozit aj sal.                           //
-// Uloha2: Pouzit vytvorenu funkciu na hashovanie a ulozit heslo        //
-//         v zahashovanom tvare.                                        //
-//////////////////////////////////////////////////////////////////////////
-package passwordsecurity2;
+package src.zadanie3;
 
 import java.security.NoSuchAlgorithmException;
-import passwordsecurity2.Database.MyResult;
+import src.zadanie3.Database.MyResult;
 
 
-public class Registration {
-    protected static MyResult registracia(String meno, String heslo) throws NoSuchAlgorithmException, Exception{
-        if (Database.exist("hesla.txt", meno)){
+public class Registration
+{
+    protected static MyResult registracia(String meno, String heslo) throws NoSuchAlgorithmException, Exception
+    {
+        if (Database.exist("hesla.txt", meno))
+        {
             System.out.println("Meno je uz zabrate.");
             return new MyResult(false, "Meno je uz zabrate.");
         }
-        else {
-            /*
-            *   Salt sa obvykle uklada ako tretia polozka v tvare [meno]:[heslo]:[salt].
-            */
-            Database.add("hesla.txt", meno + ":" + heslo);
+        else if (!Security.isPasswordStrongEnough(heslo))
+        {
+            System.out.println("Heslo nie je dostatocne silne.");
+            return new MyResult(false, "Heslo nie je dostatocne silne.");
         }
+        else
+        {
+            String salt = Security.getSalt();
+            String passwordHash = Security.hash(heslo, salt);
+
+            Database.add("hesla.txt", meno + ":" + passwordHash + ":" + salt);
+        }
+
         return new MyResult(true, "");
     }
-    
 }

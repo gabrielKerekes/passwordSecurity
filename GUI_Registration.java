@@ -1,10 +1,14 @@
-package passwordsecurity2;
+package src.zadanie3;
 
+import java.security.SecureRandom;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
-import passwordsecurity2.Database.MyResult;
+import javax.xml.bind.DatatypeConverter;
+
+import src.zadanie3.Database.MyResult;
 
 
 public class GUI_Registration extends javax.swing.JFrame {

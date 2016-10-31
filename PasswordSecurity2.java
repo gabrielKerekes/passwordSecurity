@@ -1,4 +1,4 @@
-package passwordsecurity2;
+package src.zadanie3;
 
 import javax.swing.JFrame;
 
